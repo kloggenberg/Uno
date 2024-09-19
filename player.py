@@ -14,3 +14,12 @@ class Player:
         
     def get_cards(self):
         return self.cards
+    
+
+    def show_player_hand(self):
+        for index ,card in enumerate(self.cards):
+            print(f"Card {index+1} : {card}")
+            
+            
+    def say_uno(self):
+        print("UNO!!!")

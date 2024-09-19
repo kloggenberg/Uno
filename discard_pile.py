@@ -15,3 +15,7 @@ class Discard:
         
     def clear_discard_pile(self):
         self._discard_pile = []
+        
+        
+    def get_discard_pile(self):
+        return self._discard_pile

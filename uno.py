@@ -51,7 +51,7 @@ class Uno:
                 if 0 <= user_input <= len(player.get_player_cards()):
                     if user_input == 0:
                         print("Player has to draw a card.")
-                        player.add_cards(self.deck.give_player_card())
+                        player.add_cards(self.deck.get_top_card())  # Draws a card from the deck
                         break
                     else:
                         selected_card = player.get_player_cards()[user_input - 1]
@@ -67,9 +67,14 @@ class Uno:
                             else:
                                 self.top_card = selected_card  # Update top card
                             
-                            if len(player.get_player_cards()) == 1:
+                            # Check if player has no more cards
+                            if len(player.get_player_cards()) == 0:
+                                print(f"{player.get_player_name()} has won!")
+                                self.players.remove(player)  # Remove player from the game
+                                break
+                            elif len(player.get_player_cards()) == 1:
                                 player.say_uno()  # Player should say UNO if only one card is left
-                                
+                            
                             break
                         else:
                             print("That card is not playable. Please choose another card.")
@@ -77,6 +82,7 @@ class Uno:
                     print("Please enter a valid number.")
             except ValueError:
                 print("Invalid input, please enter a valid number.")
+
 
 
     def is_playable(self, card):

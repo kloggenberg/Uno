@@ -4,7 +4,7 @@ from card import Card
 class Deck:
     def __init__(self):
         self.NUMBER_OF_CARDS_PER_HAND = 7
-        self.colours = ["Yellow", "Green", "Blue", "Red"]
+        self.colours = ["YELLOW", "GREEN", "BLUE", "RED"]
         self.numbers = list(range(0,10))
         self.special_list = ["reverse","+2","skip"]
         self.wild_list = ["+4","basic"]
@@ -16,8 +16,19 @@ class Deck:
     def get_deck(self):
         return self.cards
     
+    
+    def give_player_card(self):
+        self.cards.pop(0)
+        
+        
     def get_top_card(self):
-       return (self.cards.pop(0))
+        while True:
+            top_card = self.cards.pop(0)
+            if isinstance(top_card.get_card()[1], int):
+                return top_card
+            else:
+                self.cards.append(top_card)
+    
     
     def make_deck(self):
         for colour in self.colours:
@@ -33,7 +44,7 @@ class Deck:
         
         for _ in range(0,4):
             for value in self.wild_list:
-                self.cards.append(Card("Wild",value))      
+                self.cards.append(Card("WILD",value))      
     
     
     def shuffle_deck(self):

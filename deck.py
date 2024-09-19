@@ -44,4 +44,5 @@ class Deck:
     def deal_cards(self):
         player_hand = []
         for _ in range(0,7):
-            pass
+            player_hand.append(self.cards.pop(0)) 
+        return player_hand

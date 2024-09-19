@@ -10,13 +10,43 @@ class Uno:
         self.top_card = None
         self.set_up()
     
+    
     def run(self):
         print(f"Top card: {self.top_card.get_card()}")
+    
+        for player in self.players:
+            player.show_player_info()
+            
+    
+    
+    def check_user_hand(self, player):
+        # Loop through the player's hand
+        for user_card in player.get_player_cards():
+            # Check if the card is a Wild card
+            if user_card.get_card()[0] == "Wild":
+                return True
+            
+            # Check if the card matches the top card's color
+            if user_card.get_card()[0] == self.top_card.get_card()[0]:
+                return True
+            
+            # Check if the card matches the top card's number or value
+            if user_card.get_card()[1] == self.top_card.get_card()[1]:
+                return True
+        
+        return False
+    
+    
+    def get_player_input(self,):
+        while True:
+            user_input = int(input("}Please enter a card to play"))    
+        pass
     
     def set_up(self):
         self.get_number_player()
         self.add_players()
         self.top_card = self.deck.get_top_card()
+        
         
     def get_number_player(self):
         while True:

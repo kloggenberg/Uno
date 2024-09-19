@@ -2,8 +2,16 @@ class Player:
     def __init__(self,name,cards):
         self.name = name
         self.cards = cards
-
         
+
+    def get_player_name(self):
+        return self.name
+    
+    
+    def get_player_cards(self):
+        return self.cards
+    
+    
     def remove_card(self,card):
         self.cards.remove(card)
     

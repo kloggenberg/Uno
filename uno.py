@@ -15,7 +15,6 @@ class Uno:
         self.set_up()
         
     
-    
     def run(self):
         while len(self.players) > 0:
             for player in self.players:

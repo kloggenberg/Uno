@@ -9,6 +9,7 @@ class Card:
             self.card = (self.value)
         else:
             self.card = None
+     
         
     def get_card(self):
         return self.card

@@ -6,36 +6,26 @@ class Deck:
         self.numbers = list(range(0,10))
         self.special_list = ["reverse","+2","skip"]
         self.wild_list = ["wild +4","wild"]
-        self.cards =[]
+        self.cards = self.make_deck()
 
-        
+    
     def make_deck(self):
-        self.make_number_cards()
-        self.make_wild_cards()
-    
-    
-    def make_number_cards(self):
         for colour in self.colours:
             
             for number in self.numbers:
                 if number == 0:
-                    card = Card(colour,number)
-                    self.cards.append(card)
+                    self.cards.append(Card(colour,number))
                 else:
-                    for _ in range(0,2):
-                        card = Card(colour,number)
-                        self.cards.append(card)
+                    for _ in range(0,2): 
+                        self.cards.append(Card(colour,number))
             
             for x in self.special_list:
                     for _ in range(0,2):
-                        card = Card(colour,x)
-                        self.cards.append(card)
+                        self.cards.append(Card(colour,x))
     
         for _ in range(0,4):
             for value in self.wild_list:
-                card = Card(value=value)
-                self.cards.append(card)
-            
+                self.cards.append(Card(value=value))      
     
         
     def show_cards(self):

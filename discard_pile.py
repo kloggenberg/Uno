@@ -1,8 +1,9 @@
 from card import Card
 
 class Discard:  
-    def __init__(self):
+    def __init__(self,defualt_card):
         self.discard_pile = []
+        self.add_discard_pile(defualt_card)
     
     
     def add_discard_pile(self,card):

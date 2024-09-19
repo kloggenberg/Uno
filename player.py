@@ -2,6 +2,7 @@ class Player:
     def __init__(self,name,cards):
         self.name = name
         self.cards = cards
+        self.show_player_info()
 
         
     def remove_card(self,card):
@@ -16,9 +17,10 @@ class Player:
         return self.cards
     
 
-    def show_player_hand(self):
+    def show_player_info(self):
+        print(f"Player {self.name}:")
         for index ,card in enumerate(self.cards):
-            print(f"Card {index+1} : {card}")
+            print(f"Card {index+1} : {card.get_card()}")
             
             
     def say_uno(self):

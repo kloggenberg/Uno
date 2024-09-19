@@ -1,13 +1,7 @@
 class Player_tracker:
     def __init__(self,number_of_players):
-        self.number_of_players = list(range(0,number_of_players))
+        self.number_of_players = list(range(1,number_of_players+1))
         print(self.number_of_players)
-        
-        
-    # def show_players(self):
-    #     for index, player in enumerate(self.number_of_players):
-    #         print()
-    #     pass
     
     
     def reverse_players(self):

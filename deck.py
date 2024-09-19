@@ -12,21 +12,22 @@ class Deck:
         self.make_deck()
         self.shuffle_deck()
 
+
+    def get_deck(self):
+        return self.cards
+    
     
     def make_deck(self):
         for colour in self.colours:
-            
             for number in self.numbers:
                 if number == 0:
                     self.cards.append(Card(colour,number))
                 else:
                     for _ in range(0,2): 
                         self.cards.append(Card(colour,number))
-            
             for x in self.special_list:
                     for _ in range(0,2):
                         self.cards.append(Card(colour,number))
-    
         for _ in range(0,4):
             for value in self.wild_list:
                 self.cards.append(Card(value=value))      

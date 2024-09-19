@@ -45,49 +45,56 @@ class Uno:
                     print(f"Player {player.get_name()} forced to draw 4 cards")
                     for _ in range(0,4):
                         player.add_cards(self.deck.get_top_card())
+                    break
                 elif self.top_card.get_card()[1] == "+2":
                     print(f"Player {player.get_name()} forced to draw 2 cards")
                     for _ in range(0,2):
                         player.add_cards(self.deck.get_top_card())
-                
-                print(f"\n{player.get_player_name()}'s turn:")
-                player.show_player_info()  # Display player's hand
-                    
-                # Prompt the player to select a card to play
-                user_input = int(input("Please enter the card number you want to play (or 0 to draw a card): "))
-                    
-                if 0 <= user_input <= len(player.get_player_cards()):
-                    if user_input == 0:
-                        print("Player has to draw a card.")
-                        player.add_cards(self.deck.get_top_card())  # Draws a card from the deck
-                        break
-                    else:
-                        selected_card = player.get_player_cards()[user_input - 1]
-                            
-                        # Check if the selected card is playable
-                        if self.is_playable(selected_card):
-                            print(f"Playing card: {selected_card.get_card()}")
-                            player.remove_card(selected_card)  # Remove card from player's hand
-                            
-                            # Check if the played card is a Wild card
-                            if selected_card.get_card()[0] == "WILD":
-                                self.wildcard_player(selected_card.get_card()[1])  # Ask the player to select a color
-                            else:
-                                self.top_card = selected_card  # Update top card
-                            
-                            # Check if player has no more cards
-                            if len(player.get_player_cards()) == 0:
-                                print(f"{player.get_player_name()} has won!")
-                                self.players.remove(player)  # Remove player from the game
-                                break
-                            elif len(player.get_player_cards()) == 1:
-                                player.say_uno()  # Player should say UNO if only one card is left
-                            
+                    break
+                elif self.top_card.get_card()[0] == "skip":
+                    break
+                elif self.top_card.get_card()[1] == "reverse":
+                    print("Still need to todo reverse")
+                    break
+                else:
+                    print(f"\n{player.get_player_name()}'s turn:")
+                    player.show_player_info()  # Display player's hand
+                        
+                    # Prompt the player to select a card to play
+                    user_input = int(input("Please enter the card number you want to play (or 0 to draw a card): "))
+                        
+                    if 0 <= user_input <= len(player.get_player_cards()):
+                        if user_input == 0:
+                            print("Player has to draw a card.")
+                            player.add_cards(self.deck.get_top_card())  # Draws a card from the deck
                             break
                         else:
-                            print("That card is not playable. Please choose another card.")
-                else:
-                    print("Please enter a valid number.")
+                            selected_card = player.get_player_cards()[user_input - 1]
+                                
+                            # Check if the selected card is playable
+                            if self.is_playable(selected_card):
+                                print(f"Playing card: {selected_card.get_card()}")
+                                player.remove_card(selected_card)  # Remove card from player's hand
+                                
+                                # Check if the played card is a Wild card
+                                if selected_card.get_card()[0] == "WILD":
+                                    self.wildcard_player(selected_card.get_card()[1])  # Ask the player to select a color
+                                else:
+                                    self.top_card = selected_card  # Update top card
+                                
+                                # Check if player has no more cards
+                                if len(player.get_player_cards()) == 0:
+                                    print(f"{player.get_player_name()} has won!")
+                                    self.players.remove(player)  # Remove player from the game
+                                    break
+                                elif len(player.get_player_cards()) == 1:
+                                    player.say_uno()  # Player should say UNO if only one card is left
+                                
+                                break
+                            else:
+                                print("That card is not playable. Please choose another card.")
+                    else:
+                        print("Please enter a valid number.")
             except ValueError:
                 print("Invalid input, please enter a valid number.")
 

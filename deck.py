@@ -7,7 +7,7 @@ class Deck:
         self.colours = ["Yellow", "Green", "Blue", "Red"]
         self.numbers = list(range(0,10))
         self.special_list = ["reverse","+2","skip"]
-        self.wild_list = ["wild +4","wild"]
+        self.wild_list = ["+4","basic"]
         self.cards = []
         self.make_deck()
         self.shuffle_deck()
@@ -16,6 +16,8 @@ class Deck:
     def get_deck(self):
         return self.cards
     
+    def get_top_card(self):
+       return (self.cards.pop(0))
     
     def make_deck(self):
         for colour in self.colours:
@@ -28,9 +30,10 @@ class Deck:
             for x in self.special_list:
                     for _ in range(0,2):
                         self.cards.append(Card(colour,number))
+        
         for _ in range(0,4):
             for value in self.wild_list:
-                self.cards.append(Card(value=value))      
+                self.cards.append(Card("Wild",value))      
     
     
     def shuffle_deck(self):
@@ -45,5 +48,9 @@ class Deck:
     def deal_cards(self):
         player_hand = []
         for _ in range(0,7):
-            player_hand.append(self.cards.pop(0)) 
+            player_hand.append(self.cards.pop(0))
         return player_hand
+    
+    
+    def remake_deck(self):
+        pass

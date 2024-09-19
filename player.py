@@ -2,7 +2,6 @@ class Player:
     def __init__(self,name,cards):
         self.name = name
         self.cards = cards
-        self.show_player_info()
 
         
     def remove_card(self,card):

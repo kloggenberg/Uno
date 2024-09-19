@@ -19,7 +19,6 @@ class Uno:
         while len(self.players) > 0:
             for player in self.players:
                 self.clear_screen()
-                print(self.deck.colours)
                 self.handle_turn(player)            
     
     
@@ -41,7 +40,16 @@ class Uno:
         while True: 
             try:
                 print(f"Top card : {self.top_card.get_card()}")
-                    
+                
+                if self.top_card.get_card()[1] == "+4":
+                    print(f"Player {player.get_name()} forced to draw 4 cards")
+                    for _ in range(0,4):
+                        player.add_cards(self.deck.get_top_card())
+                elif self.top_card.get_card()[1] == "+2":
+                    print(f"Player {player.get_name()} forced to draw 2 cards")
+                    for _ in range(0,2):
+                        player.add_cards(self.deck.get_top_card())
+                
                 print(f"\n{player.get_player_name()}'s turn:")
                 player.show_player_info()  # Display player's hand
                     
@@ -63,7 +71,7 @@ class Uno:
                             
                             # Check if the played card is a Wild card
                             if selected_card.get_card()[0] == "WILD":
-                                self.wildcard_player()  # Ask the player to select a color
+                                self.wildcard_player(selected_card.get_card()[1])  # Ask the player to select a color
                             else:
                                 self.top_card = selected_card  # Update top card
                             
@@ -96,15 +104,19 @@ class Uno:
         return False
     
     
-    def wildcard_player(self):
+    def wildcard_player(self, value):
         """Handles the situation where a Wild card is played."""
         while True:
             selected_color = input("Please select a color ['Blue', 'Red', 'Green', 'Yellow']: ").upper()
             if selected_color in self.deck.colours:
                 print(f"The new color is {selected_color}")
                 # Update the top card with the selected color and the Wild value
-                self.top_card = Card(selected_color, None)
-                break
+                if value == "basic":
+                    self.top_card = Card(selected_color, None)
+                    break
+                else:
+                    self.top_card = Card(selected_color, "+4")
+                    break
             else:
                 print("Invalid selection. Please select a valid color ['Blue', 'Red', 'Green', 'Yellow'].")
 

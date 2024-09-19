@@ -1,6 +1,6 @@
 from deck import Deck
 
-class Uno:
+class Uno:   
     def run(self):
         deck = Deck()
-        pass
+        deck.show_cards()

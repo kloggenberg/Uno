@@ -2,8 +2,13 @@ class Player:
     def __init__(self,name,cards):
         self.name = name
         self.cards = cards
+        self.still_playing = True
         
-
+        
+    def set_playing(self,playing):
+        self._playing = playing
+        
+        
     def get_player_name(self):
         return self.name
     
@@ -25,7 +30,6 @@ class Player:
     
 
     def show_player_info(self):
-        print(f"Player {self.name}:")
         for index ,card in enumerate(self.cards):
             print(f"Card {index+1} : {card.get_card()}")
             

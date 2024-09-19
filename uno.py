@@ -108,7 +108,7 @@ class Uno:
             self.players.append(Player(name, player_cards))
 
 
-    def clear_screen():
+    def clear_screen(self):
         if platform.system() == "Windows":
             os.system('cls')
         else:
